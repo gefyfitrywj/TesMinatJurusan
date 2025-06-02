@@ -8,6 +8,11 @@ from mangum import Mangum
 
 app = FastAPI()
 
+@app.get("/")
+def read_root():
+    return {"message": "API Tes Minat Jurusan aktif!"}
+
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],  # Ganti sesuai domain frontend jika perlu
