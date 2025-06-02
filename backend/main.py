@@ -1,17 +1,19 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import numpy as np
-from model_loader import load_models
-from fastapi.middleware.cors import CORSMiddleware 
+from fastapi.middleware.cors import CORSMiddleware
+import os
+import requests
 from mangum import Mangum
 
 app = FastAPI()
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Atau ganti dengan domain frontend seperti 'http://localhost:3000'
+    allow_origins=["*"],  # Ganti sesuai domain frontend jika perlu
     allow_credentials=True,
-    allow_methods=["*"],  # Memungkinkan semua metode HTTP
-    allow_headers=["*"],  # Memungkinkan semua header
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 MODEL_SMA_URL = "https://drive.google.com/uc?export=download&id=1OXKXBEeXDXKgSo0J544En0qpxzHCjGZM"
