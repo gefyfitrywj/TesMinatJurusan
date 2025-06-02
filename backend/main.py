@@ -14,10 +14,32 @@ app.add_middleware(
     allow_headers=["*"],  # Memungkinkan semua header
 )
 
-model_sma, model_s1 = load_models()
+MODEL_SMA_URL = "https://drive.google.com/uc?export=download&id=1OXKXBEeXDXKgSo0J544En0qpxzHCjGZM"
+MODEL_S1_URL = "https://drive.google.com/uc?export=download&id=1buKNW7-TFYMyKC-qv3sLBsywkAhQNXpC"
+MODEL_SMA_PATH = "model_sma.pkl"
+MODEL_S1_PATH = "model_s1.pkl"
+
+def download_file(url, path):
+    if not os.path.exists(path):
+        print(f"Downloading {path}...")
+        r = requests.get(url)
+        r.raise_for_status()
+        with open(path, "wb") as f:
+            f.write(r.content)
+        print(f"{path} downloaded.")
+    else:
+        print(f"{path} already exists, skipping download.")
+
+@app.on_event("startup")
+def startup_event():
+    download_file(MODEL_SMA_URL, MODEL_SMA_PATH)
+    download_file(MODEL_S1_URL, MODEL_S1_PATH)
+    global model_sma, model_s1
+    from model_loader import load_models
+    model_sma, model_s1 = load_models(MODEL_SMA_PATH, MODEL_S1_PATH)
 
 class InputData(BaseModel):
-    responses: list[int]  # 0 atau 1
+    responses: list[int]  # List berisi 0 atau 1
 
 @app.post("/predict")
 async def predict(data: InputData):
