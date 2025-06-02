@@ -1,8 +1,6 @@
-import pickle
+import joblib
 
-def load_models(model_sma_path, model_s1_path):
-    with open(model_sma_path, "rb") as f:
-        model_sma = pickle.load(f)
-    with open(model_s1_path, "rb") as f:
-        model_s1 = pickle.load(f)
+def load_models(path_sma, path_s1):
+    model_sma = joblib.load(path_sma)
+    model_s1 = joblib.load(path_s1)
     return model_sma, model_s1
