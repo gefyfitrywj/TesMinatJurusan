@@ -3,6 +3,7 @@ from pydantic import BaseModel
 import numpy as np
 from model_loader import load_models
 from fastapi.middleware.cors import CORSMiddleware 
+from mangum import Mangum
 
 app = FastAPI()
 app.add_middleware(

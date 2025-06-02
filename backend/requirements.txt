@@ -28,7 +28,7 @@ markdown-it-py==3.0.0
 MarkupSafe==3.0.2
 mdurl==0.1.2
 narwhals==1.35.0
-numpy==2.2.5
+numpy==1.26.4
 orjson==3.10.18
 packaging==24.2
 pandas==2.2.3
@@ -73,3 +73,5 @@ uvicorn==0.34.2
 watchdog==6.0.0
 watchfiles==1.0.5
 websockets==15.0.1
+mangum==0.17.0
+
