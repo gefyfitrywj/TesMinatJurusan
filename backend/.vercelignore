@@ -1,2 +1,8 @@
+node_modules/
 models/
 *.pkl
+*.log
+build/
+.cache/
+.vscode/
+.DS_Store
