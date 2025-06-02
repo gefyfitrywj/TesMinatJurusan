@@ -118,7 +118,7 @@ const submitAnswers = async () => {
             alert("Jawaban belum lengkap.")
             return
         }
-        const response = await fetch('http://localhost:8000/predict', {
+        const response = await fetch('https://tesminatjurusan-production.up.railway.app/', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
